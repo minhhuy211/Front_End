@@ -1,7 +1,7 @@
 import React from "react";
-import "../style/Header.scss";
+import "../styles/Header.scss";
  
-class HeaderComponent extends React.Component{
+class Header extends React.Component{
     render() {
         return <div className= "header">asss</div>
 
@@ -9,4 +9,4 @@ class HeaderComponent extends React.Component{
 }
 
 
-export default HeaderComponent;
+export default Header;
