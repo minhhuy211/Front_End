@@ -1,12 +1,14 @@
+import Header from './component/Header';
 import Footer from "./component/Footer";
-import Header from "./component/Header";
+import "../src/asset/style.css"
+ import "../src/vendors/bootstrap/bootstrap.min.css"
 
 function App() {
   return (
-    <div className="app">
-      <Header></Header>
-      <Footer></Footer>
-    </div>
+      <div>
+    <Header/>
+      <Footer/>
+      </div>
   );
 }
 
