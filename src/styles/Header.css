@@ -1,0 +1,42 @@
+.header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 100px;
+  background-color: rgb(188, 196, 196);
+}
+.header .logo {
+  width: 200px;
+  height: 120px;
+  margin-left: 50px;
+}
+.header .header-list {
+  display: flex;
+  list-style: none;
+  column-gap: 50px;
+  margin: 0;
+  padding: 0;
+}
+.header .header-list li {
+  font-size: 25px;
+  cursor: pointer;
+}
+.header .header-right {
+  display: flex;
+  align-items: center;
+  margin-right: 40px;
+}
+.header .header-right .icon-cart {
+  font-size: 25px;
+  cursor: pointer;
+}
+.header .header-right .icon-user {
+  font-size: 25px;
+  margin-left: 50px;
+  cursor: pointer;
+}
+.header .action {
+  border-bottom: 3px solid #000000;
+}
+
+/*# sourceMappingURL=Header.css.map */
