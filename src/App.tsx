@@ -1,8 +1,12 @@
-import Header from './component/Header';
+import Footer from "./component/Footer";
+import Header from "./component/Header";
 
 function App() {
   return (
-    <Header></Header>
+    <div className="app">
+      <Header></Header>
+      <Footer></Footer>
+    </div>
   );
 }
 
