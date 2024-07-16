@@ -1,0 +1,38 @@
+.header-area {
+    .navbar {
+        padding: 0;
+    }
+    .container {
+        display: flex;
+        padding: 10px 15px;
+        img{
+            width: 150px;
+            height: 80px;
+        }
+        color: #000;
+        ul{
+            display: flex;
+            align-items: center;
+            font-size: 18px;
+            li{
+                margin: 0 20px;
+                cursor: pointer;
+            }
+        }
+        .nav-shop {
+            display: flex;
+            align-items: center;
+            margin: 0;
+            .button{
+                padding: 10px 35px;
+            }
+            .header-icon-button{
+                margin-right: 10px;
+            }
+        }
+        .active{
+            padding-bottom: 1px;
+            border-bottom: 2px solid #4d0fdd;
+        }
+    }
+}
