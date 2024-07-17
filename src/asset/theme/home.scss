@@ -160,6 +160,12 @@
   p{
     margin-bottom: 0;
   }
+  .card-product__img{
+    height: 140px;
+  }
+  .card-img{
+    height: inherit;
+  }
 
   &__img{
     position: relative;

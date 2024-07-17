@@ -15,9 +15,9 @@ class Header extends React.Component {
             <div className="header-area">
                 <nav className="navbar navbar-expand-lg navbar-light">
                     <div className="container">
-                        <a href="#">
+
                             <img src={logo} alt="" className="logo"/>
-                        </a>
+
                         <ul className="nav navbar-nav menu_nav ml-auto mr-auto">
                             <li >
                             <NavLink
@@ -57,14 +57,14 @@ class Header extends React.Component {
                             <li className="nav-item">
                                 <FontAwesomeIcon icon={faShoppingCart}></FontAwesomeIcon>
                             </li>
-                            <li className="nav-item">
-                                <a className="button button-header" href="#">
-                                    <FontAwesomeIcon
-                                        icon={faUser}
-                                        className="header-icon-button"
-                                    ></FontAwesomeIcon>
-                                    Đăng nhập
-                                </a>
+                                <li className="nav-item">
+                                    <a className="button button-header" href="#">
+                                        <FontAwesomeIcon
+                                            icon={faUser}
+                                            className="header-icon-button"
+                                        ></FontAwesomeIcon>
+                                        Đăng nhập
+                                    </a>
                             </li>
                         </ul>
                     </div>
