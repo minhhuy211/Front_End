@@ -232,41 +232,41 @@
 
 
 /*=================== offer section start  ====================*/
-.offer{
-  background: url('../img/home/parallax-bg.png') right center no-repeat;
-  background-size: cover;
+//.offer{
+//  background: url({ logo }) right center no-repeat;
+//  background-size: cover;
 
-  @media(min-width: 1200px){
-    background-size: 100% 100%;
-  }
+  //@media(min-width: 1200px){
+  //  background-size: 100% 100%;
+  //}
 
-  &__content{
-    padding: 100px 0 110px 0;
-
-    @media(min-width: 1000px){
-      padding: 122px 0 135px 0;
-    }
-
-    h3{
-      font-size: 35px;
-      font-weight: 400;
-      margin-bottom: 20px;
-
-      @media(min-width: 650px){
-        font-size: 50px;
-        margin-bottom: 25px;
-      }
-    }
-
-    h4{
-      font-size: 30px;
-    }
-
-    p{
-      color: #555555;
-    }
-  }
-}
+  //&__content{
+  //  padding: 100px 0 110px 0;
+  //
+  //  @media(min-width: 1000px){
+  //    padding: 122px 0 135px 0;
+  //  }
+  //
+  //  h3{
+  //    font-size: 35px;
+  //    font-weight: 400;
+  //    margin-bottom: 20px;
+  //
+  //    @media(min-width: 650px){
+  //      font-size: 50px;
+  //      margin-bottom: 25px;
+  //    }
+  //  }
+  //
+  //  h4{
+  //    font-size: 30px;
+  //  }
+  //
+  //  p{
+  //    color: #555555;
+  //  }
+  //}
+//}
 /*=================== offer section end  ====================*/
 
 
