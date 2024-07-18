@@ -1,6 +1,7 @@
 import React from "react";
 import banner from "../assets/banner.jpg";
 import "../styles/Home.scss";
+import {Link} from 'react-router-dom';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
     faCheckCircle,
@@ -170,11 +171,10 @@ class Home extends React.Component <{}, State> {
                                                     <img className="card-img" src={item.image} alt=""></img>
                                                     <ul className="card-product__imgOverlay">
                                                         <li>
-                                                            <button>
-                                                                {/*<i className="ti-search"></i>*/}
+                                                            <Link to={`/product/${item.id}`}>
                                                                 <FontAwesomeIcon
                                                                     icon={faSearch}></FontAwesomeIcon>
-                                                            </button>
+                                                            </Link>
                                                         </li>
                                                         <li>
                                                             <button>
@@ -193,7 +193,9 @@ class Home extends React.Component <{}, State> {
                                                 <div className="card-body">
                                                     <p>{item.programmingLanguage}</p>
                                                     <h4 className="card-product__title">
-                                                        <a href="#">{item.name}</a>
+                                                        <Link to={`/product/${item.id}`}>
+                                                            {item.name}
+                                                        </Link>
                                                     </h4>
                                                     <p className="card-product__price">{item.price} VND</p>
                                                 </div>
@@ -221,10 +223,10 @@ class Home extends React.Component <{}, State> {
                                                     <img className="card-img" src={item.image} alt=""></img>
                                                     <ul className="card-product__imgOverlay">
                                                         <li>
-                                                            <button>
+                                                            <Link to={`/product/${item.id}`}>
                                                                 <FontAwesomeIcon
                                                                     icon={faSearch}></FontAwesomeIcon>
-                                                            </button>
+                                                            </Link>
                                                         </li>
                                                         <li>
                                                             <button>
@@ -243,7 +245,9 @@ class Home extends React.Component <{}, State> {
                                                 <div className="card-body">
                                                     <p>{item.programmingLanguage}</p>
                                                     <h4 className="card-product__title">
-                                                        <a href="#">{item.name}</a>
+                                                        <Link to={`/product/${item.id}`}>
+                                                            {item.name}
+                                                        </Link>
                                                     </h4>
                                                     <p className="card-product__price">{item.price} VND</p>
                                                 </div>
@@ -274,11 +278,10 @@ class Home extends React.Component <{}, State> {
                                                     <img className="card-img" src={item.image} alt=""></img>
                                                     <ul className="card-product__imgOverlay">
                                                         <li>
-                                                            <button>
-                                                                {/*<i className="ti-search"></i>*/}
+                                                            <Link to={`/product/${item.id}`}>
                                                                 <FontAwesomeIcon
                                                                     icon={faSearch}></FontAwesomeIcon>
-                                                            </button>
+                                                            </Link>
                                                         </li>
                                                         <li>
                                                             <button>
@@ -297,7 +300,9 @@ class Home extends React.Component <{}, State> {
                                                 <div className="card-body">
                                                     <p>{item.programmingLanguage}</p>
                                                     <h4 className="card-product__title">
-                                                        <a href="#">{item.name}</a>
+                                                        <Link to={`/product/${item.id}`}>
+                                                            {item.name}
+                                                        </Link>
                                                     </h4>
                                                     <p className="card-product__price">{item.price} VND</p>
                                                 </div>
@@ -327,11 +332,10 @@ class Home extends React.Component <{}, State> {
                                                     <img className="card-img" src={item.image} alt=""></img>
                                                     <ul className="card-product__imgOverlay">
                                                         <li>
-                                                            <button>
-                                                                {/*<i className="ti-search"></i>*/}
+                                                            <Link to={`/product/${item.id}`}>
                                                                 <FontAwesomeIcon
                                                                     icon={faSearch}></FontAwesomeIcon>
-                                                            </button>
+                                                            </Link>
                                                         </li>
                                                         <li>
                                                             <button>
@@ -350,7 +354,9 @@ class Home extends React.Component <{}, State> {
                                                 <div className="card-body">
                                                     <p>{item.programmingLanguage}</p>
                                                     <h4 className="card-product__title">
-                                                        <a href="#">{item.name}</a>
+                                                        <Link to={`/product/${item.id}`}>
+                                                            {item.name}
+                                                        </Link>
                                                     </h4>
                                                     <p className="card-product__price">{item.price} VND</p>
                                                 </div>
