@@ -1,6 +1,7 @@
 import React from "react";
 import product2 from "../img/product/product2.png"
 import axios from "axios";
+import { Link } from 'react-router-dom';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
     faSearch,
@@ -384,10 +385,9 @@ interface State {
                                                             />
                                                             <ul className="card-product__imgOverlay">
                                                                 <li>
-                                                                    <button>
-                                                                        {/*<i className="ti-search"></i>*/}
+                                                                    <Link to={`/product/${item.id}`}>
                                                                         <FontAwesomeIcon icon={faSearch}></FontAwesomeIcon>
-                                                                    </button>
+                                                                    </Link>
                                                                 </li>
                                                                 <li>
                                                                     <button>
@@ -401,7 +401,9 @@ interface State {
                                                         <div className="card-body">
                                                             <p>{item.programmingLanguage}</p>
                                                             <h4 className="card-product__title">
-                                                                <a href="#">{item.name}</a>
+                                                                <Link to={`/product/${item.id}`}>
+                                                                    {item.name}
+                                                                </Link>
                                                             </h4>
                                                             <p className="card-product__price">{item.price} VND</p>
                                                         </div>
