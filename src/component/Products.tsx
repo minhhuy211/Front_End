@@ -1,5 +1,6 @@
 import React, {ChangeEvent} from "react";
 import product2 from "../img/product/product2.png"
+import {Link} from 'react-router-dom';
 import axios from "axios";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
@@ -21,7 +22,7 @@ interface Product {
     programmingLanguage: string;
     version: string;
     requirements: string;
-    like:number
+    like: number
 }
 
 interface State {
@@ -95,15 +96,15 @@ class Products extends React.Component<{}, State> {
 
     }
     //select
-    handleSelectPerPage=(e:ChangeEvent<HTMLSelectElement>)=>{
+    handleSelectPerPage = (e: ChangeEvent<HTMLSelectElement>) => {
         this.setState(prevState => ({
-            perPage:+e.target.value
+            perPage: +e.target.value
         }))
     }
     //sự kiện yêu thích (like) sản phẩm
-    handleLikeClick=(id:number)=>{
-        let res = axios.put("http://localhost:4000/products/like/"+id);
-        console.log(res,"likeeeeeeeeeeeeeeee")
+    handleLikeClick = (id: number) => {
+        let res = axios.put("http://localhost:4000/products/like/" + id);
+        console.log(res, "likeeeeeeeeeeeeeeee")
     }
     //loadMenu trang
     loadMenu = () => {
@@ -142,7 +143,7 @@ class Products extends React.Component<{}, State> {
 
     componentDidUpdate(prevProps: Readonly<{}>, prevState: Readonly<State>, snapshot?: any) {
         if ((prevState.txt !== this.state.txt) || (prevState.categoryCurrent !== this.state.categoryCurrent) || (prevState.programmingLanguageCurrent !== this.state.programmingLanguageCurrent)
-            || (prevState.pageCurrent !== this.state.pageCurrent)||(prevState.perPage!==this.state.perPage)
+            || (prevState.pageCurrent !== this.state.pageCurrent) || (prevState.perPage !== this.state.perPage)
         ) {
             this.loadMenu();
         }
@@ -337,11 +338,10 @@ class Products extends React.Component<{}, State> {
                                                             />
                                                             <ul className="card-product__imgOverlay">
                                                                 <li>
-                                                                    <button>
-                                                                        {/*<i className="ti-search"></i>*/}
+                                                                    <Link to={`/product/${item.id}`}>
                                                                         <FontAwesomeIcon
                                                                             icon={faSearch}></FontAwesomeIcon>
-                                                                    </button>
+                                                                    </Link>
                                                                 </li>
                                                                 <li>
                                                                     <button>
@@ -350,7 +350,8 @@ class Products extends React.Component<{}, State> {
                                                                     </button>
                                                                 </li>
                                                                 <li>
-                                                                    <button onClick={()=>this.handleLikeClick(item.id)}>
+                                                                    <button
+                                                                        onClick={() => this.handleLikeClick(item.id)}>
                                                                         <FontAwesomeIcon
                                                                             icon={faHeart}></FontAwesomeIcon>
                                                                     </button>
@@ -360,7 +361,9 @@ class Products extends React.Component<{}, State> {
                                                         <div className="card-body">
                                                             <p>{item.programmingLanguage}</p>
                                                             <h4 className="card-product__title">
-                                                                <a href="#">{item.name}</a>
+                                                                <Link to={`/product/${item.id}`}>
+                                                                    {item.name}
+                                                                </Link>
                                                             </h4>
                                                             <p className="card-product__price">{item.price} VND</p>
                                                         </div>
@@ -377,7 +380,7 @@ class Products extends React.Component<{}, State> {
                             </div>
 
                         </div>
-                        <div >
+                        <div>
                             {Array.from({length: numPage}, (_, index) => (
                                 <button
                                     key={index + 1}
@@ -386,6 +389,7 @@ class Products extends React.Component<{}, State> {
                                 >
                                     {index + 1}
                                 </button>
+
                             ))}
                         </div>
                     </div>
