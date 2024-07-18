@@ -147,14 +147,6 @@ a {
     margin: 120px 0 70px 0;
   }
 }
-.section-margin--small {
-  margin: 35px 0;
-}
-@media (min-width: 1000px) {
-  .section-margin--small {
-    margin: 98px 0;
-  }
-}
 
 .section-padding {
   padding: 60px 0;
@@ -823,7 +815,7 @@ a {
 }
 .hero-banner__img {
   position: relative;
-  top: 1px;
+  top: 20px;
 }
 @media (max-width: 575px) {
   .hero-banner__content {
@@ -923,6 +915,12 @@ a {
 }
 .card-product p {
   margin-bottom: 0;
+}
+.card-product .card-product__img {
+  height: 140px;
+}
+.card-product .card-img {
+  height: inherit;
 }
 .card-product__img {
   position: relative;
@@ -4337,7 +4335,7 @@ a {
 
 .footer-bottom {
   background: rgba(0, 35, 71, 0.9803921569);
-  padding: 32px;
+  padding: 20px;
 }
 .footer-bottom .footer-text {
   color: #fff;
