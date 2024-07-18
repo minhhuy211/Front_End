@@ -1,5 +1,8 @@
-import React, { ChangeEvent } from "react";
-import product2 from "../img/product/product2.png";
+
+import React, {ChangeEvent} from "react";
+import product2 from "../img/product/product2.png"
+import {Link} from 'react-router-dom';
+
 import axios from "axios";
 import "../styles/Products.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -23,6 +26,7 @@ interface Product {
   version: string;
   requirements: string;
   like: number;
+
 }
 
 interface State {
@@ -151,6 +155,39 @@ class Products extends React.Component<{}, State> {
     for (let i = begin; i < Math.min(begin + perPage, total); i++) {
       listt.push(listProductsCurrent[i]);
     }
+    //select
+    handleSelectPerPage = (e: ChangeEvent<HTMLSelectElement>) => {
+        this.setState(prevState => ({
+            perPage: +e.target.value
+        }))
+    }
+    //sự kiện yêu thích (like) sản phẩm
+    handleLikeClick = (id: number) => {
+        let res = axios.put("http://localhost:4000/products/like/" + id);
+        console.log(res, "likeeeeeeeeeeeeeeee")
+    }
+    //loadMenu trang
+    loadMenu = () => {
+        this.setState(prevState => ({
+            listProductsCurrent: prevState.listProducts.filter(product =>
+                (product.name.toLowerCase().includes(this.state.txt) ||
+                    product.category.toLowerCase().includes(this.state.txt) ||
+                    product.programmingLanguage.toLowerCase().includes(this.state.txt) ||
+                    product.code.toLowerCase().includes(this.state.txt)) &&
+                (this.state.categoryCurrent ? product.category === this.state.categoryCurrent : true) &&
+                (this.state.programmingLanguageCurrent ? product.programmingLanguage === this.state.programmingLanguageCurrent : true)
+            )
+        }), () => {
+            // Sau khi lọc dữ liệu, gọi hàm getP để phân trang
+            this.initForPage();
+        });
+    }
+
+//Hàm phân trang
+    initForPage = () => {
+        const {listProductsCurrent, perPage, pageCurrent} = this.state;
+        const total = listProductsCurrent.length;
+        const numPage = Math.ceil(total / perPage);
 
     this.setState({
       listProductsCurrent: listt,
@@ -196,6 +233,13 @@ class Products extends React.Component<{}, State> {
             console.error("Lỗi khi load dữ liêu categry: ", item, error);
             return 0;
           }
+
+    componentDidUpdate(prevProps: Readonly<{}>, prevState: Readonly<State>, snapshot?: any) {
+        if ((prevState.txt !== this.state.txt) || (prevState.categoryCurrent !== this.state.categoryCurrent) || (prevState.programmingLanguageCurrent !== this.state.programmingLanguageCurrent)
+            || (prevState.pageCurrent !== this.state.pageCurrent) || (prevState.perPage !== this.state.perPage)
+        ) {
+            this.loadMenu();
+
         }
       );
 
@@ -376,6 +420,201 @@ class Products extends React.Component<{}, State> {
                           <i className="ti-search" />
                         </button>
                       </div>
+    render() {
+        let {
+            listProducts,
+            listCategory,
+            txt,
+            listProductsCurrent,
+            sizeOfCategory,
+            listprogrammingLanguage,
+            numPage,
+            pageCurrent
+        } = this.state;
+        // / console.log(' sizeOfCategory:', sizeOfCategory);
+
+        return (<>
+                <section className="section-margin--small mb-5">
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-xl-3 col-lg-4 col-md-5">
+                                <div className="sidebar-categories">
+                                    <div className="head">Danh Mục</div>
+                                    <ul className="main-categories">
+                                        <li className="common-filter">
+                                            <ul>
+                                                <li className="filter-list" key={""}
+                                                    onClick={() => this.handleCategory("")}>
+                                                    <input
+                                                        className="pixel-radio"
+                                                        type="radio"
+                                                        id="all"
+                                                        name="brand"
+                                                    />
+                                                    <label htmlFor="all">
+                                                        Tất cả<span> ({listProducts.length})</span>
+                                                    </label>
+                                                </li>
+                                                {listCategory && listCategory.length > 0 && listCategory.map((item, index) => {
+                                                    return (<>
+                                                            {/*Mỗi phần tử trong danh mục*/}
+                                                            <li className="filter-list" key={item}
+                                                                onClick={() => this.handleCategory(item)}>
+                                                                <input
+                                                                    className="pixel-radio"
+                                                                    type="radio"
+                                                                    id={item}
+                                                                    name="brand"
+                                                                />
+                                                                <label htmlFor={item}>
+
+                                                                    {item}<span> ({sizeOfCategory[index]})</span>
+                                                                </label>
+
+                                                            </li>
+                                                            {/*kết thúc phần tử trong danh mục*/}
+                                                        </>
+                                                    );
+                                                })}
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div className="sidebar-filter">
+                                    <div className="top-filter-head">Công nghệ và Ngôn ngữ</div>
+                                    <div className="common-filter">
+                                        <ul>
+                                            <li className="filter-list" key="all"
+                                                onClick={() => this.handleLanguage("")}>
+                                                <input
+                                                    className="pixel-radio"
+                                                    type="radio"
+                                                    id="all"
+                                                    name="language"
+                                                />
+                                                <label htmlFor="all">
+                                                    Tất cả
+                                                </label>
+                                            </li>
+                                            {listprogrammingLanguage && listprogrammingLanguage.length > 0 && listprogrammingLanguage.map((item, index) => {
+                                                return (
+                                                    // ngôn ngữ
+                                                    <li className="filter-list" key={item}
+                                                        onClick={() => this.handleLanguage(item)}>
+                                                        <input
+                                                            className="pixel-radio"
+                                                            type="radio"
+                                                            id={item}
+                                                            name="language"
+                                                        />
+                                                        <label htmlFor={item}>
+                                                            {item}
+                                                        </label>
+                                                    </li>
+                                                    // {/* kêt thuc 1ngôn ngữ*/}
+                                                )
+                                            })}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-xl-9 col-lg-8 col-md-7">
+                                {/* Start Filter Bar */}
+                                <div className="text-center mb-5 wow fadeInUp" data-wow-delay=".3s">
+                                    <h2 className="mb-2 px-3 py-1 text-dark rounded-pill d-inline-block border border-2 border-primary">
+                                        Source Code Tham Khảo
+                                    </h2>
+                                </div>
+                                <div className="filter-bar d-flex flex-wrap align-items-center">
+                                    <div className="sorting mr-auto">
+                                        <select id="selectPerPage" onChange={this.handleSelectPerPage}>
+                                            <option value="9">9</option>
+                                            <option value="12">12</option>
+                                            <option value="15">15</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <div className="input-group filter-bar-search">
+                                            <input type="text" placeholder="Search" onChange={this.handleSearch}/>
+                                            <div className="input-group-append">
+                                                <button type="button">
+                                                    <i className="ti-search"/>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {/* End Filter Bar */}
+                                {/* Start Menu*/}
+                                <section className="lattest-product-area pb-40 category-list">
+                                    <div className="row">
+                                        {/*Từng sản phẩm*/}
+                                        {listProductsCurrent && listProductsCurrent.length > 0 && listProductsCurrent.map((item, index) => {
+                                            return (
+                                                <div className="col-md-6 col-lg-4" key={item.id}>
+                                                    <div className="card text-center card-product">
+                                                        <div className="card-product__img">
+                                                            <img
+                                                                className="card-img"
+                                                                src={item.image}
+                                                                alt=""
+                                                            />
+                                                            <ul className="card-product__imgOverlay">
+                                                                <li>
+                                                                    <Link to={`/product/${item.id}`}>
+                                                                        <FontAwesomeIcon
+                                                                            icon={faSearch}></FontAwesomeIcon>
+                                                                    </Link>
+                                                                </li>
+                                                                <li>
+                                                                    <button>
+                                                                        <FontAwesomeIcon
+                                                                            icon={faShoppingCart}></FontAwesomeIcon>
+                                                                    </button>
+                                                                </li>
+                                                                <li>
+                                                                    <button
+                                                                        onClick={() => this.handleLikeClick(item.id)}>
+                                                                        <FontAwesomeIcon
+                                                                            icon={faHeart}></FontAwesomeIcon>
+                                                                    </button>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                        <div className="card-body">
+                                                            <p>{item.programmingLanguage}</p>
+                                                            <h4 className="card-product__title">
+                                                                <Link to={`/product/${item.id}`}>
+                                                                    {item.name}
+                                                                </Link>
+                                                            </h4>
+                                                            <p className="card-product__price">{item.price} VND</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            )
+                                        })}
+
+                                        {/*jjjjjjjjjjjj*/}
+                                    </div>
+                                </section>
+                                {/* End Best Seller */}
+
+                            </div>
+
+                        </div>
+                        <div>
+                            {Array.from({length: numPage}, (_, index) => (
+                                <button
+                                    key={index + 1}
+                                    className={`button-page ${this.state.pageCurrent === index + 1 ? "active" : ""}`}
+                                    onClick={() => this.handlePageClick(index + 1)}
+                                >
+                                    {index + 1}
+                                </button>
+
+                            ))}
+                        </div>
                     </div>
                   </div>
                 </div>
