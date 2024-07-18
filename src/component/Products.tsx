@@ -1,5 +1,6 @@
 import React, {ChangeEvent} from "react";
 import product2 from "../img/product/product2.png"
+import {Link} from 'react-router-dom';
 import axios from "axios";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
@@ -368,7 +369,7 @@ class Products extends React.Component<{}, State> {
                                                                     </button>
                                                                 </li>
                                                                 <li>
-                                                                    <button onClick={() => this.handleAddShoppingCart(item.id)}>
+                                                                    <button>
                                                                         <FontAwesomeIcon
                                                                             icon={faShoppingCart}></FontAwesomeIcon>
                                                                     </button>
@@ -378,7 +379,6 @@ class Products extends React.Component<{}, State> {
                                                                         <FontAwesomeIcon
                                                                             icon={faHeart}></FontAwesomeIcon>
                                                                     </button>
-                                                                    {item.like}
                                                                 </li>
                                                             </ul>
                                                         </div>
