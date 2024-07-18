@@ -1,4 +1,4 @@
-import React from "react";
+import React, {ChangeEvent} from "react";
 import product2 from "../img/product/product2.png"
 import axios from "axios";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
