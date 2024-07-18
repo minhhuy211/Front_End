@@ -13,41 +13,42 @@
   background: #f1f6f7;
   margin-bottom: 30px;
 
-  a,i{
-    color:$black;
+  a, i {
+    color: $black;
   }
 
-  &-search{
+  &-search {
     margin-top: 10px;
-    input{
+
+    input {
       border: 1px solid #eee;
       font-size: 14px;
       color: #999999;
       height: 38px;
       padding-left: 15px;
 
-      &:focus{
+      &:focus {
         outline: 0;
         box-shadow: none;
       }
 
-      &::placeholder{
+      &::placeholder {
         color: #999999;
       }
     }
 
-    button{
+    button {
       background: transparent;
       border: 1px solid #eee;
       background: #fff;
       border-left: 0;
       padding-right: 15px;
-
-      i,span{
+      i, span {
         font-size: 14px;
         color: #999999;
       }
     }
+
   }
 }
 
@@ -55,15 +56,18 @@
 .sorting {
   margin-top: 10px;
   margin-right: 10px;
+
   .nice-select {
     border-radius: 0px;
     border: 1px solid #eee;
     padding-right: 50px;
     height: 38px;
     color: #999999;
+
     &:after {
       right: 18px;
     }
+
     .list {
       border-radius: 0px;
     }
@@ -82,34 +86,40 @@
     font-weight: 400;
     color: #fff;
   }
+
   .main-categories {
     padding: 20px 28px;
     background: #f1f6f7;
     // box-shadow: 0 10px 10px rgba(153, 153, 153, 0.1);
 
-    .pixel-radio{
+    .pixel-radio {
       background: transparent !important;
     }
   }
+
   .main-nav-list {
     a {
-      font-size:14px;
+      font-size: 14px;
       display: block;
       line-height: 50px;
       padding-left: 10px;
       border-bottom: 1px solid #eee;
+
       &:hover {
         color: $primary-color;
       }
+
       .number {
         color: #cccccc;
         margin-left: 10px;
       }
+
       .lnr {
         margin-right: 10px;
         display: none;
       }
     }
+
     &.child {
       a {
         padding-left: 32px;
@@ -117,12 +127,14 @@
     }
   }
 }
+
 //--------- End Sidebar Category Dropdown ---------//
 
 
 //--------- Start Product Filter ---------//
 .sidebar-filter {
   margin-top: 30px;
+
   .top-filter-head {
     font-family: 'Oswald', sans-serif;
     line-height: 50px;
@@ -132,6 +144,7 @@
     font-weight: 400;
     color: #fff;
   }
+
   .head {
     line-height: 60px;
     padding: 0 30px;
@@ -141,34 +154,41 @@
     text-transform: capitalize;
     // margin-top: 5px;
   }
+
   .common-filter {
     background: #f1f6f7;
     border-bottom: 1px solid #eee;
     padding-bottom: 25px;
+
     .filter-list {
       position: relative;
       padding-left: 28px;
     }
   }
 
-  .common-filter:last-child{
+  .common-filter:last-child {
     border-bottom: 0;
   }
 }
+
 .filter-list {
   line-height: 32px;
+
   i {
     margin-right: 10px;
     cursor: pointer;
   }
+
   .number {
     color: #ccc;
   }
+
   label {
     margin-bottom: 3px;
     cursor: pointer;
   }
 }
+
 @-webkit-keyframes click-wave {
   0% {
     transform: translate(-50%, -50%) scale(1);
@@ -185,6 +205,7 @@
     position: absolute;
   }
 }
+
 @-moz-keyframes click-wave {
   0% {
     transform: translate(-50%, -50%) scale(1);
@@ -201,6 +222,7 @@
     position: absolute;
   }
 }
+
 @keyframes click-wave {
   0% {
     transform: translate(-50%, -50%) scale(1);
@@ -217,6 +239,7 @@
     position: absolute;
   }
 }
+
 .pixel-radio {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -242,9 +265,11 @@
   position: relative;
   z-index: 1;
 }
+
 .pixel-radio:checked {
   border: 8px solid $primary-color;
 }
+
 .pixel-radio:checked::after {
   -webkit-animation: click-wave 0.65s;
   -moz-animation: click-wave 0.65s;
@@ -259,36 +284,44 @@
   z-index: 2;
   opacity: 0;
 }
+
 .pixel-radio {
   border-radius: 50%;
   top: 2px;
 }
+
 .pixel-radio::after {
   border-radius: 50%;
 }
+
 //--------- End Product Filter ---------//
 
 
 //--------- Start Price Range Area noUiSlider ----------//
 .price-range-area {
   padding: 15px 30px 0 30px;
+
   .noUi-target {
     background: #eee;
     border-radius: 0px;
     border: 0px;
     box-shadow: none;
   }
-  .noUi-base{
+
+  .noUi-base {
     background: #e8f0f2;
   }
+
   .noUi-horizontal {
     height: 6px;
   }
+
   .noUi-connect {
     background: #e8f0f2;
     border-radius: 0px;
     box-shadow: none;
   }
+
   .noUi-horizontal .noUi-handle {
     width: 16px;
     height: 16px;
@@ -299,50 +332,61 @@
     background: $primary-color;
     box-shadow: none;
     cursor: pointer;
-    @include transition( ease .1s );
+    @include transition(ease .1s);
+
     &:focus {
       outline: none;
     }
+
     &:hover {
       border: 3px solid $primary-color;
       background: $white;
     }
   }
+
   .noUi-handle::after, .noUi-handle::before {
     display: none;
   }
+
   .value-wrapper {
     margin-top: 15px;
     color: #777777;
+
     .to {
       margin: 0 5px;
     }
   }
+
   .price {
     margin-right: 5px;
     color: $text-color;
   }
 }
+
 //--------- End Price Range Area noUiSlider ----------//
 
 
 //--------- single top product ----------//
 .single-search-product {
   padding: 10px 0;
-  @media(min-width: 1000px){
+  @media(min-width: 1000px) {
     padding: 20px 0;
   }
-  &-wrapper{
+
+  &-wrapper {
     padding: 12px 20px 10px 30px;
     border: 1px solid #EEEEEE;
   }
+
   img {
     max-width: 70px;
     height: auto;
   }
+
   .desc {
     margin-left: 15px;
     margin-top: 5px;
+
     .title {
       font-family: 'Oswald', sans-serif;
       color: $title-color;
@@ -352,13 +396,16 @@
       // -webkit-background-clip: text;
       // -webkit-text-fill-color: transparent;
     }
+
     .price {
       font-size: 16px;
       font-weight: 500;
       color: #777777;
+
       span {
         font-weight: 700;
       }
+
       del {
         font-size: 12px;
         color: #cccccc;
@@ -367,11 +414,12 @@
     }
   }
 
-  &:hover{
-    .title{
+  &:hover {
+    .title {
       color: $primary-color;
     }
   }
+
   // position: relative;
   // &:after {
   // 	position: absolute;
