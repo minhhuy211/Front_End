@@ -1,123 +1,106 @@
 import React from "react";
-class Footer extends React.Component {
-    render() {
-        return <footer className="footer">
-            <div className="footer-area">
-                <div className="container">
-                    <div className="row section_gap">
-                        <div className="col-lg-3 col-md-6 col-sm-6">
-                            <div className="single-footer-widget tp_widgets">
-                                <h4 className="footer_title large_title">Our Mission</h4>
-                                <p>
-                                    So seed seed green that winged cattle in. Gathering thing made fly
-                                    you're no divided deep moved us lan Gathering thing us land years
-                                    living.
-                                </p>
-                                <p>
-                                    So seed seed green that winged cattle in. Gathering thing made fly
-                                    you're no divided deep moved
-                                </p>
-                            </div>
-                        </div>
-                        <div className="offset-lg-1 col-lg-2 col-md-6 col-sm-6">
-                            <div className="single-footer-widget tp_widgets">
-                                <h4 className="footer_title">Quick Links</h4>
-                                <ul className="list">
-                                    <li>
-                                        <a href="#">Home</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Shop</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Blog</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Product</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Brand</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Contact</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div className="col-lg-2 col-md-6 col-sm-6">
-                            <div className="single-footer-widget instafeed">
-                                <h4 className="footer_title">Gallery</h4>
-                                <ul className="list instafeed d-flex flex-wrap">
-                                    <li>
-                                        <img src="img/gallery/r1.jpg" alt=""/>
-                                    </li>
-                                    <li>
-                                        <img src="img/gallery/r2.jpg" alt=""/>
-                                    </li>
-                                    <li>
-                                        <img src="img/gallery/r3.jpg" alt=""/>
-                                    </li>
-                                    <li>
-                                        <img src="img/gallery/r5.jpg" alt=""/>
-                                    </li>
-                                    <li>
-                                        <img src="img/gallery/r7.jpg" alt=""/>
-                                    </li>
-                                    <li>
-                                        <img src="img/gallery/r8.jpg" alt=""/>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div className="offset-lg-1 col-lg-3 col-md-6 col-sm-6">
-                            <div className="single-footer-widget tp_widgets">
-                                <h4 className="footer_title">Contact Us</h4>
-                                <div className="ml-40">
-                                    <p className="sm-head">
-                                        <span className="fa fa-location-arrow"/>
-                                        Head Office
-                                    </p>
-                                    <p>123, Main Street, Your City</p>
-                                    <p className="sm-head">
-                                        <span className="fa fa-phone"/>
-                                        Phone Number
-                                    </p>
-                                    <p>
-                                        +123 456 7890 <br/>
-                                        +123 456 7890
-                                    </p>
-                                    <p className="sm-head">
-                                        <span className="fa fa-envelope"/>
-                                        Email
-                                    </p>
-                                    <p>
-                                        free@infoexample.com <br/>
-                                        www.infoexample.com
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div className="footer-bottom">
-                <div className="container">
-                    <div className="row d-flex">
-                        <p className="col-lg-12 footer-text text-center">
-                            {/* Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. */}
-                            Copyright © All rights reserved | This template is made with{" "}
-                            <i className="fa fa-heart" aria-hidden="true"/> by{" "}
-                            <a href="https://colorlib.com" target="_blank">
-                                Colorlib
-                            </a>
-                            {/* Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. */}
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </footer>
+import logo from "../assets/logo.png";
+import "../styles/Footer.scss";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faEnvelope,
+  faLocation,
+  faLocationDot,
+  faLocationPin,
+  faPhone,
+} from "@fortawesome/free-solid-svg-icons";
 
-    }
+class Footer extends React.Component {
+  render() {
+    return (
+      <footer className="footer">
+        <div className="container">
+          <div className="section_gap footer-container">
+            <div className="col-lg-3 col-md-6 col-sm-6">
+              <a href="#">
+                <img src={logo} alt="" className="logo" />
+              </a>
+              <p>
+                <span>Sharecode.vn</span> là một cộng đồng "download và chia sẻ
+                source code" cho tất cả những ai yêu thích, quan tâm đến lĩnh
+                vực công nghệ thông tin và muốn tìm hiểu kỹ năng lập trình, ở
+                đây bạn có thể tìm kiếm và download miễn phí hoặc có phí các
+                source code, đồ án,... dùng để tham khảo nâng cao kiến thức lập
+                trình trong học tập cũng như công việc hoặc sử dụng để phát
+                triển.
+              </p>
+            </div>
+            <div className="col-lg-2 col-md-6 col-sm-6 footer-item">
+              <h4 className="">Về Chúng Tôi</h4>
+              <ul className="list">
+                <li>
+                  <a href="#">Giới thiệu</a>
+                </li>
+                <li>
+                  <a href="#">Quy định chung</a>
+                </li>
+                <li>
+                  <a href="#">Chính sách bán code</a>
+                </li>
+              </ul>
+            </div>
+            <div className="col-lg-2 col-md-6 col-sm-6 footer-item">
+              <h4 className="">Hướng Dẫn</h4>
+              <ul className="list ">
+                <li>
+                  <a href="#">Tải code về miễn phí</a>
+                </li>
+                <li>
+                  <a href="#">Tải code có phí</a>
+                </li>
+                <li>
+                  <a href="#">Hướng dẫn nạp tiền</a>
+                </li>
+                <li>
+                  <a href="#">Hỗ trợ kỹ thuật</a>
+                </li>
+              </ul>
+            </div>
+            <div className="col-lg-3 col-md-6 col-sm-6 footer-item">
+              <h4 className="">Liên Hệ</h4>
+              <textarea
+                cols={35}
+                rows={2}
+                placeholder="Nội dung liên hệ của bạn..."
+              ></textarea>
+              <p>
+                <FontAwesomeIcon icon={faLocationDot}></FontAwesomeIcon> &nbsp;
+                KP6, Phường Linh Trung, TP Thủ Đức, TP. Hồ Chí Minh, Việt Nam.
+              </p>
+              <p>
+                <FontAwesomeIcon icon={faPhone}></FontAwesomeIcon>
+                &nbsp; +123456 7890
+              </p>
+              <p>
+                <FontAwesomeIcon icon={faEnvelope}></FontAwesomeIcon>
+                &nbsp; icancode@gmail.com
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className="footer-bottom">
+          <div className="container">
+            <div className="row d-flex">
+              <p className="col-lg-12 footer-text text-center">
+                {/* Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. */}
+                Copyright © All rights reserved | This template is made with{" "}
+                <i className="fa fa-heart" aria-hidden="true" /> by{" "}
+                <a href="https://colorlib.com" target="_blank">
+                  Colorlib
+                </a>
+                {/* Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. */}
+              </p>
+            </div>
+          </div>
+        </div>
+      </footer>
+    );
+  }
 }
 
 export default Footer;

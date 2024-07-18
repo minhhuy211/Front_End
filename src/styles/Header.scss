@@ -13,10 +13,12 @@
         ul{
             display: flex;
             align-items: center;
-            font-size: 18px;
+            font-size: 20px;
+            
             li{
                 margin: 0 20px;
                 cursor: pointer;
+                color: #000;
             }
         }
         .nav-shop {
@@ -31,8 +33,12 @@
             }
         }
         .active{
-            padding-bottom: 1px;
-            border-bottom: 2px solid #4d0fdd;
+            transform: translateY(-3px);
+            font-weight: 700;
+        }
+        a{
+            color: #000;
+            font-weight: 500;
         }
     }
 }
