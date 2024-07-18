@@ -45,8 +45,8 @@ class Home extends React.Component <{}, State> {
 
     }
     //xư lí hanh đông nhấn tim
-    handleLikeClick = (id: number) => {
-        let res = axios.put("http://localhost:4000/products/like/" + id);
+    handleLikeClick =async (id: number) => {
+        let res =await axios.put("http://localhost:4000/products/like/" + id);
         this.setState(prevState => ({
             listProducts: prevState.listProducts.map(p => {
                 if (p.id === id) {
@@ -60,8 +60,7 @@ class Home extends React.Component <{}, State> {
     //sự kiện thêm giỏ hàng
     handleAddShoppingCart=async (id:number)=>{
         await axios.post("http://localhost:4000/shoppingcart/"+id);
-        // let response = await axios.get("http://localhost:4000/shoppingcarts");
-        // console.log(response.data)
+
     }
 
     async componentDidMount() {
