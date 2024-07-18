@@ -5,6 +5,7 @@ const LogIn: React.FC = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleLogin = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -13,9 +14,9 @@ const LogIn: React.FC = () => {
       const response = await fetch("http://localhost:4000/login", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify({ login: username, password })
+        body: JSON.stringify({ login: username, password }),
       });
 
       const data = await response.json();
@@ -24,10 +25,16 @@ const LogIn: React.FC = () => {
         // Lưu token và chuyển hướng hoặc thực hiện hành động khác
         navigate("/"); // Chuyển hướng sang trang chủ
       } else {
-        console.error("Login failed", data.message);
+        // Xử lý lỗi từ backend
+        if (data && data.message) {
+          setErrorMessage(data.message);
+        } else {
+          setErrorMessage("Login failed. Please try again later.");
+        }
       }
     } catch (error) {
       console.error("An error occurred:", error);
+      setErrorMessage("An error occurred. Please try again later.");
     }
   };
 
@@ -73,6 +80,11 @@ const LogIn: React.FC = () => {
               <div className="col-lg-6">
                 <div className="login_form_inner">
                   <h3>Log in to enter</h3>
+                  {errorMessage && (
+                      <div className="alert alert-danger" role="alert">
+                        {errorMessage}
+                      </div>
+                  )}
                   <form className="row login_form" onSubmit={handleLogin}>
                     <div className="col-md-12 form-group">
                       <input
