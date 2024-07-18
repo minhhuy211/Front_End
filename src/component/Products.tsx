@@ -1,7 +1,6 @@
 import React from "react";
 import product2 from "../img/product/product2.png"
 import axios from "axios";
-import { Link } from 'react-router-dom';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
     faSearch,
@@ -385,9 +384,10 @@ interface State {
                                                             />
                                                             <ul className="card-product__imgOverlay">
                                                                 <li>
-                                                                    <Link to={`/product/${item.id}`}>
+                                                                    <button>
+                                                                        {/*<i className="ti-search"></i>*/}
                                                                         <FontAwesomeIcon icon={faSearch}></FontAwesomeIcon>
-                                                                    </Link>
+                                                                    </button>
                                                                 </li>
                                                                 <li>
                                                                     <button>
@@ -401,9 +401,7 @@ interface State {
                                                         <div className="card-body">
                                                             <p>{item.programmingLanguage}</p>
                                                             <h4 className="card-product__title">
-                                                                <Link to={`/product/${item.id}`}>
-                                                                    {item.name}
-                                                                </Link>
+                                                                <a href="#">{item.name}</a>
                                                             </h4>
                                                             <p className="card-product__price">{item.price} VND</p>
                                                         </div>
@@ -592,4 +590,5 @@ interface State {
     }
 }
 
+// @ts-ignore
 export default Products;

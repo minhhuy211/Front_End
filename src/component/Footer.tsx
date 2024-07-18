@@ -65,12 +65,13 @@ class Footer extends React.Component {
               <h4 className="">Liên Hệ</h4>
               <textarea
                 cols={35}
-                rows={2}
+                rows={3}
                 placeholder="Nội dung liên hệ của bạn..."
               ></textarea>
               <p>
-                <FontAwesomeIcon icon={faLocationDot}></FontAwesomeIcon> &nbsp;
-                KP6, Phường Linh Trung, TP Thủ Đức, TP. Hồ Chí Minh, Việt Nam.
+                <FontAwesomeIcon icon={faLocationDot}></FontAwesomeIcon>
+                &nbsp; KP6, Phường Linh Trung, TP Thủ Đức, TP. Hồ Chí Minh, Việt
+                Nam.
               </p>
               <p>
                 <FontAwesomeIcon icon={faPhone}></FontAwesomeIcon>

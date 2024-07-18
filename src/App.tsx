@@ -1,8 +1,8 @@
 import Header from "./component/Header";
 import Footer from "./component/Footer";
-import "../src/asset/style.scss";
 import "../src/vendors/bootstrap/bootstrap.min.css";
 import "../src/vendors/owl-carousel/owl.theme.default.min.css";
+import "../src/asset/style.scss";
 import "../src/img/home/parallax-bg.png";
 import logo from "../src/img/logo.png";
 import React, { useState } from "react";
@@ -12,6 +12,9 @@ import Home from "./component/Home";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Guide from "./component/Guide";
 import Contact from "./component/Contact";
+import Cart from "./component/Cart";
+import LogIn from "./component/LogIn";
+import Register from "./component/Register";
 
 class App extends React.Component {
   render() {
@@ -25,6 +28,9 @@ class App extends React.Component {
             <Route path="/product/:id" element={<ProductDetail />} />
             <Route path="/guide" element={<Guide />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/login" element={<LogIn />} />
+            <Route path="/register" element={<Register />} />
           </Routes>
           <Footer />
         </>
