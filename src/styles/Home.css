@@ -1,0 +1,59 @@
+.hero-banner {
+  min-height: 700px;
+}
+.hero-banner::before {
+  background-color: rgb(110, 219, 134);
+}
+.hero-banner img {
+  height: 500px;
+  top: 10px;
+}
+.hero-banner p {
+  text-align: justify;
+}
+.hero-banner .button-hero {
+  background-color: rgb(71, 170, 92);
+  border: none;
+}
+
+.nav-inf {
+  max-width: 1500px;
+  margin: 40px auto;
+  padding: 10px 15px;
+  border: 1px solid #858585;
+  border-radius: 5px;
+  background-color: #F1F6F7;
+}
+.nav-inf .nav-inf-list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.nav-inf .nav-inf-list .nav-inf-item {
+  display: flex;
+  align-items: center;
+  font-size: 35px;
+  margin: 0 10px;
+  padding-right: 70px;
+  border-right: 2px solid #858585;
+  cursor: pointer;
+}
+.nav-inf .nav-inf-list .nav-inf-item:first-child {
+  padding-left: 20px;
+}
+.nav-inf .nav-inf-list .nav-inf-item:last-child {
+  border: none;
+  padding-right: 30px;
+}
+.nav-inf .nav-inf-list .nav-inf-item h4 {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0 0 5px 20px;
+  text-transform: uppercase;
+}
+.nav-inf .nav-inf-list .nav-inf-item p {
+  font-size: 18px;
+  margin: 5px 0 0 20px;
+}
+
+/*# sourceMappingURL=Home.css.map */

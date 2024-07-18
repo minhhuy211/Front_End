@@ -38,7 +38,7 @@
 
   &__img{
     position: relative;
-    top: 1px;
+    top: 20px;
   }
 
   &__content{
@@ -159,6 +159,12 @@
 
   p{
     margin-bottom: 0;
+  }
+  .card-product__img{
+    height: 140px;
+  }
+  .card-img{
+    height: inherit;
   }
 
   &__img{

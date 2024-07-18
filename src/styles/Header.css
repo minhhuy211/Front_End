@@ -1,3 +1,4 @@
+
 .header-area .navbar {
   padding: 0;
 }
@@ -13,11 +14,12 @@
 .header-area .container ul {
   display: flex;
   align-items: center;
-  font-size: 18px;
+  font-size: 20px;
 }
 .header-area .container ul li {
   margin: 0 20px;
   cursor: pointer;
+  color: #000;
 }
 .header-area .container .nav-shop {
   display: flex;
@@ -31,8 +33,12 @@
   margin-right: 10px;
 }
 .header-area .container .active {
-  padding-bottom: 1px;
-  border-bottom: 2px solid #4d0fdd;
+  transform: translateY(-3px);
+  font-weight: 700;
+}
+.header-area .container a {
+  color: #000;
+  font-weight: 500;
 }
 
 /*# sourceMappingURL=Header.css.map */
