@@ -21,7 +21,8 @@ interface Product {
     programmingLanguage: string;
     version: string;
     requirements: string;
-    like:number
+    like:number;
+    comments:string;
 }
 
 interface State {
@@ -100,11 +101,34 @@ class Products extends React.Component<{}, State> {
             perPage:+e.target.value
         }))
     }
-    //sự kiện yêu thích (like) sản phẩm
-    handleLikeClick=(id:number)=>{
-        let res = axios.put("http://localhost:4000/products/like/"+id);
-        console.log(res,"likeeeeeeeeeeeeeeee")
+    //sự kiện thêm giỏ hàng
+    handleAddShoppingCart=async (id:number)=>{
+        await axios.post("http://localhost:4000/shoppingcart/"+id);
+        // let response = await axios.get("http://localhost:4000/shoppingcarts");
+        // console.log(response.data)
     }
+
+    //sự kiện yêu thích (like) sản phẩm
+    handleLikeClick = async (id: number) => {
+        try {
+            // Gửi yêu cầu PUT để cập nhật số lượng like của sản phẩm với id
+            await axios.put(`http://localhost:4000/products/like/${id}`);
+
+            // Cập nhật lại state của React sau khi cập nhật thành công
+            this.setState(prevState => ({
+                listProducts: prevState.listProducts.map(product => {
+                    if (product.id === id) {
+                        // Cập nhật lại số lượng like của sản phẩm có id tương ứng
+                        return { ...product, like: product.like + 1 };
+                    }
+                    return product; // Trả về sản phẩm không thay đổi nếu không phải sản phẩm cần cập nhật
+                })
+            }));
+
+        } catch (error) {
+            console.error('Error updating product with like:', error);
+        }
+    };
     //loadMenu trang
     loadMenu = () => {
         this.setState(prevState => ({
@@ -142,7 +166,7 @@ class Products extends React.Component<{}, State> {
 
     componentDidUpdate(prevProps: Readonly<{}>, prevState: Readonly<State>, snapshot?: any) {
         if ((prevState.txt !== this.state.txt) || (prevState.categoryCurrent !== this.state.categoryCurrent) || (prevState.programmingLanguageCurrent !== this.state.programmingLanguageCurrent)
-            || (prevState.pageCurrent !== this.state.pageCurrent)||(prevState.perPage!==this.state.perPage)
+            || (prevState.pageCurrent !== this.state.pageCurrent)||(prevState.perPage!==this.state.perPage)||(prevState.listProducts!==this.state.listProducts)
         ) {
             this.loadMenu();
         }
@@ -344,7 +368,7 @@ class Products extends React.Component<{}, State> {
                                                                     </button>
                                                                 </li>
                                                                 <li>
-                                                                    <button>
+                                                                    <button onClick={() => this.handleAddShoppingCart(item.id)}>
                                                                         <FontAwesomeIcon
                                                                             icon={faShoppingCart}></FontAwesomeIcon>
                                                                     </button>
@@ -354,6 +378,7 @@ class Products extends React.Component<{}, State> {
                                                                         <FontAwesomeIcon
                                                                             icon={faHeart}></FontAwesomeIcon>
                                                                     </button>
+                                                                    {item.like}
                                                                 </li>
                                                             </ul>
                                                         </div>

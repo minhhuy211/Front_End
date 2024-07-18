@@ -46,7 +46,21 @@ class Home extends React.Component <{}, State> {
     //xư lí hanh đông nhấn tim
     handleLikeClick = (id: number) => {
         let res = axios.put("http://localhost:4000/products/like/" + id);
+        this.setState(prevState => ({
+            listProducts: prevState.listProducts.map(p => {
+                if (p.id === id) {
+                    return {...p, like: p.like + 1};
+                }
+                return p;
+            })
+        }))
         this.getDataList();
+    }
+    //sự kiện thêm giỏ hàng
+    handleAddShoppingCart=async (id:number)=>{
+        await axios.post("http://localhost:4000/shoppingcart/"+id);
+        // let response = await axios.get("http://localhost:4000/shoppingcarts");
+        // console.log(response.data)
     }
 
     async componentDidMount() {
@@ -177,7 +191,7 @@ class Home extends React.Component <{}, State> {
                                                             </button>
                                                         </li>
                                                         <li>
-                                                            <button>
+                                                            <button onClick={() => this.handleAddShoppingCart(item.id)}>
                                                                 <FontAwesomeIcon
                                                                     icon={faShoppingCart}></FontAwesomeIcon>
                                                             </button>
@@ -187,6 +201,7 @@ class Home extends React.Component <{}, State> {
                                                                 <FontAwesomeIcon
                                                                     icon={faHeart}></FontAwesomeIcon>
                                                             </button>
+                                                            {item.like}
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -227,7 +242,7 @@ class Home extends React.Component <{}, State> {
                                                             </button>
                                                         </li>
                                                         <li>
-                                                            <button>
+                                                            <button onClick={() => this.handleAddShoppingCart(item.id)}>
                                                                 <FontAwesomeIcon
                                                                     icon={faShoppingCart}></FontAwesomeIcon>
                                                             </button>
@@ -237,6 +252,7 @@ class Home extends React.Component <{}, State> {
                                                                 <FontAwesomeIcon
                                                                     icon={faHeart}></FontAwesomeIcon>
                                                             </button>
+                                                            {item.like}
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -265,7 +281,7 @@ class Home extends React.Component <{}, State> {
                         </div>
                         <div className="row">
                             {/*BEGIN*/}
-                            {listGame&&listGame.map((item, index) => {
+                            {listGame && listGame.map((item, index) => {
                                 return (
                                     <>
                                         <div className="col-md-6 col-lg-4 col-xl-3" key={item.id}>
@@ -281,7 +297,7 @@ class Home extends React.Component <{}, State> {
                                                             </button>
                                                         </li>
                                                         <li>
-                                                            <button>
+                                                            <button onClick={() => this.handleAddShoppingCart(item.id)}>
                                                                 <FontAwesomeIcon
                                                                     icon={faShoppingCart}></FontAwesomeIcon>
                                                             </button>
@@ -291,6 +307,7 @@ class Home extends React.Component <{}, State> {
                                                                 <FontAwesomeIcon
                                                                     icon={faHeart}></FontAwesomeIcon>
                                                             </button>
+                                                            {item.like}
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -318,7 +335,7 @@ class Home extends React.Component <{}, State> {
                         </div>
                         <div className="row">
                             {/*BEGIN*/}
-                            {listUD&&listUD.map((item, index) => {
+                            {listUD && listUD.map((item, index) => {
                                 return (
                                     <>
                                         <div className="col-md-6 col-lg-4 col-xl-3" key={item.id}>
@@ -334,7 +351,7 @@ class Home extends React.Component <{}, State> {
                                                             </button>
                                                         </li>
                                                         <li>
-                                                            <button>
+                                                            <button onClick={() => this.handleAddShoppingCart(item.id)}>
                                                                 <FontAwesomeIcon
                                                                     icon={faShoppingCart}></FontAwesomeIcon>
                                                             </button>
@@ -344,6 +361,7 @@ class Home extends React.Component <{}, State> {
                                                                 <FontAwesomeIcon
                                                                     icon={faHeart}></FontAwesomeIcon>
                                                             </button>
+                                                            {item.like}
                                                         </li>
                                                     </ul>
                                                 </div>
