@@ -1,42 +1,38 @@
-.header {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  height: 100px;
-  background-color: rgb(188, 196, 196);
-}
-.header .logo {
-  width: 200px;
-  height: 120px;
-  margin-left: 50px;
-}
-.header .header-list {
-  display: flex;
-  list-style: none;
-  column-gap: 50px;
-  margin: 0;
+.header-area .navbar {
   padding: 0;
 }
-.header .header-list li {
-  font-size: 25px;
-  cursor: pointer;
+.header-area .container {
+  display: flex;
+  padding: 10px 15px;
+  color: #000;
 }
-.header .header-right {
+.header-area .container img {
+  width: 150px;
+  height: 80px;
+}
+.header-area .container ul {
   display: flex;
   align-items: center;
-  margin-right: 40px;
+  font-size: 18px;
 }
-.header .header-right .icon-cart {
-  font-size: 25px;
+.header-area .container ul li {
+  margin: 0 20px;
   cursor: pointer;
 }
-.header .header-right .icon-user {
-  font-size: 25px;
-  margin-left: 50px;
-  cursor: pointer;
+.header-area .container .nav-shop {
+  display: flex;
+  align-items: center;
+  margin: 0;
 }
-.header .action {
-  border-bottom: 3px solid #000000;
+.header-area .container .nav-shop .button {
+  padding: 10px 35px;
+}
+.header-area .container .nav-shop .header-icon-button {
+  margin-right: 10px;
+}
+.header-area .container .active {
+  padding-bottom: 1px;
+  border-bottom: 2px solid #4d0fdd;
 }
 
 /*# sourceMappingURL=Header.css.map */
