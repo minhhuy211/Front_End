@@ -815,7 +815,7 @@ a {
 }
 .hero-banner__img {
   position: relative;
-  top: 1px;
+  top: 20px;
 }
 @media (max-width: 575px) {
   .hero-banner__content {
@@ -4335,7 +4335,7 @@ a {
 
 .footer-bottom {
   background: rgba(0, 35, 71, 0.9803921569);
-  padding: 32px;
+  padding: 20px;
 }
 .footer-bottom .footer-text {
   color: #fff;
