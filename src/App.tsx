@@ -11,6 +11,9 @@ import Home from "./component/Home";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Guide from "./component/Guide";
 import Contact from "./component/Contact";
+import Cart from "./component/Cart";
+import LogIn from "./component/LogIn";
+import Register from "./component/Register";
 
 class App extends React.Component {
   render() {
@@ -23,6 +26,9 @@ class App extends React.Component {
             <Route path="/products" element={<Products />} />
             <Route path="/guide" element={<Guide />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/login" element={<LogIn />} />
+            <Route path="/register" element={<Register />} />
           </Routes>
           <Footer />
         </>
