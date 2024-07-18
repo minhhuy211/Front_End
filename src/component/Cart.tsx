@@ -1,6 +1,8 @@
 import React from "react";
 import "../styles/Cart.scss";
 import axios from "axios";
+import Products from "./Products";
+
 
 interface Product {
     id: number;
@@ -14,8 +16,7 @@ interface Product {
     programmingLanguage: string;
     version: string;
     requirements: string;
-    like: number;
-    comments:string;
+    like: number
 }
 
 interface ShoppingCart {
@@ -24,47 +25,71 @@ interface ShoppingCart {
 }
 
 interface State {
-    listShoppingCart: ShoppingCart[];
+    listShoppingCart:ShoppingCart[];
 }
 
 class Cart extends React.Component<{}, State> {
     state: State = {
         listShoppingCart: []
-    };
-
-    handleAdd = (id: number) => {
-        axios.put(`http://localhost:4000/shoppingcarts/addQuantity/${id}`)
-            .then(() => {
-                this.setState(prevState => ({
-                    listShoppingCart: prevState.listShoppingCart.map(s => {
-                        if (s.product.id === id) {
-                            return { ...s, quantity: s.quantity + 1 };
-                        }
-                        return s;
-                    })
-                }));
-            });
-    };
-
-    handleReduce = async (id: number) => {
-            
     }
 
-    async componentDidMount() {
-        try {
-            const res = await axios.get("http://localhost:4000/shoppingcarts");
-            this.setState({
-                listShoppingCart: res.data
-            });
-        } catch (error) {
-            console.error('loi:', error);
+    //xử lí tăng số lượng
+    handleAdd = (id: number) => {
+        axios.put("http://localhost:4000/shoppingcarts/addQuantity/" + id)
+        this.setState(prevState=>({
+            listShoppingCart:prevState.listShoppingCart.map(s=>{
+                if(s.product.id === id){
+                    return {...s, quantity: s.quantity + 1};
+                }
+                return s;
+            })
+        }))
+    }
+    handleReduce = (id: number) => {
+        let a = this.state.listShoppingCart.find(s => s.product.id === id);
+        if (a) {
+            if (a.quantity >= 1) {
+                axios.put(`http://localhost:4000/shoppingcarts/reduceQuantity/${id}`);
+                this.setState({
+                    listShoppingCart: this.state.listShoppingCart.length > 0
+                        ? this.state.listShoppingCart
+                            .map(s => {
+                                if (s.product.id === id) {
+                                    if (s.quantity > 1) {
+                                        return { ...s, quantity: s.quantity - 1 };
+                                    }
+                                    return null;
+                                }
+                                return s;
+                            })
+                            .filter(s => s !== null) as ShoppingCart[]
+                        : []
+                });
+            }
         }
     }
 
-    render() {
-        const { listShoppingCart } = this.state;
-        const total = listShoppingCart.reduce((acc, item) => acc + (parseFloat(item.product.price) * item.quantity), 0);
 
+    async componentDidMount() {
+        try {
+            const response = await axios.get("http://localhost:4000/shoppingcarts");
+
+
+            this.setState({
+                listShoppingCart: response?.data??[]
+            }, () => {
+                console.log(this.state.listShoppingCart,"llllllllllllllll");
+
+            })
+        } catch (error) {
+            console.error('Error fetching products:', error);
+        }
+    }
+
+
+
+    render() {
+        let {listShoppingCart} = this.state;
         return (
             <>
                 <section className="blog-banner-area" id="category">
@@ -94,20 +119,22 @@ class Cart extends React.Component<{}, State> {
                                 <table className="table">
                                     <thead>
                                     <tr>
-                                        <th scope="col" >Sản Phẩm</th>
+                                        <th scope="col">Sản Phẩm</th>
                                         <th scope="col">Đơn Giá</th>
                                         <th scope="col">Số Lượng</th>
                                         <th scope="col">Tổng Tiền</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    {listShoppingCart.length > 0 ? (
-                                        listShoppingCart.map((item) => (
+                                    {/*begin*/}
+                                    {listShoppingCart.length>0?
+                                    listShoppingCart.map((item, index) => {
+                                        return (<>
                                             <tr key={item.product.id}>
-                                                <td >
+                                                <td>
                                                     <div className="media">
                                                         <div className="d-flex">
-                                                             <img src={item.product.image} alt="" />
+                                                            {/* <img src={item.product.image} alt="" /> */}
                                                         </div>
                                                         <div className="media-body">
                                                             <p>{item.product.name}</p>
@@ -119,18 +146,28 @@ class Cart extends React.Component<{}, State> {
                                                 </td>
                                                 <td>
                                                     <button onClick={() => this.handleAdd(item.product.id)}>+</button>
-                                                    <b className="product_count">{item.quantity}</b>
-                                                    <button onClick={() => this.handleReduce(item.product.id)}>-</button>
+                                                    <b>{item.quantity}</b>
+                                                    <button onClick={() => this.handleReduce(item.product.id)}>-
+                                                    </button>
                                                 </td>
                                                 <td>
-                                                    <h5>{parseFloat(item.product.price) * item.quantity} VND</h5>
+                                                    <h5>{+item.product.price * item.quantity} VND</h5>
                                                 </td>
                                             </tr>
-                                        ))
-                                    ) : (
-                                       <td>Giỏ hàng của bạn hiện tại rỗng.</td>
-                                    )}
+                                            </>
 
+                                        );
+                                    })
+                                        :
+                                        <tr>
+                                            <td>
+                                                giỏ hang rong
+                                            </td>
+                                        </tr>
+                                    }
+
+
+                                    {/*end*/}
                                     <tr className="bottom_button">
                                         <td>
                                             <a className="button" href="#">
@@ -141,7 +178,7 @@ class Cart extends React.Component<{}, State> {
                                         <td></td>
                                         <td>
                                             <div className="cupon_text d-flex align-items-center">
-                                                {/* <input type="text" placeholder="Coupon Code" /> */}
+                                                {/* <input type="text" placeholder="Coupon Code"> */}
                                                 <a className="primary-btn" href="#">
                                                     Apply
                                                 </a>
@@ -152,13 +189,13 @@ class Cart extends React.Component<{}, State> {
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td></td>
+                                    <td></td>
                                         <td></td>
                                         <td>
                                             <h5>Subtotal</h5>
                                         </td>
                                         <td>
-                                            <h5>{total.toFixed(2)} VND</h5>
+                                            <h5>$2160.00</h5>
                                         </td>
                                     </tr>
                                     <tr className="shipping_area">
@@ -185,7 +222,10 @@ class Cart extends React.Component<{}, State> {
                                                 </ul>
                                                 <h6>
                                                     Calculate Shipping{" "}
-                                                    <i className="fa fa-caret-down" aria-hidden="true"></i>
+                                                    <i
+                                                        className="fa fa-caret-down"
+                                                        aria-hidden="true"
+                                                    ></i>
                                                 </h6>
                                                 <select className="shipping_select">
                                                     <option value="1">Bangladesh</option>
@@ -197,7 +237,7 @@ class Cart extends React.Component<{}, State> {
                                                     <option value="2">Select a State</option>
                                                     <option value="4">Select a State</option>
                                                 </select>
-                                                {/* <input type="text" placeholder="Postcode/Zipcode" /> */}
+                                                {/* <input type="text" placeholder="Postcode/Zipcode"> */}
                                                 <a className="gray_btn" href="#">
                                                     Update Details
                                                 </a>
