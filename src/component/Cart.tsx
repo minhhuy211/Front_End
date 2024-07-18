@@ -47,13 +47,32 @@ class Cart extends React.Component<{}, State> {
     };
 
     handleReduce = async (id: number) => {
-        let res=await axios.put(`http://localhost:4000/shoppingcarts/reduceQuantity/${id}`);
-        console.log("giammmmmmmmmmmm", res);
+        try {
+            // Gửi yêu cầu PUT để giảm số lượng sản phẩm
+            const response = await axios.put(`http://localhost:4000/shoppingcarts/reduceQuantity/${id}`);
 
+            // Cập nhật trạng thái giỏ hàng
+            this.setState(prevState => {
+                // Lọc sản phẩm bị xóa ra khỏi danh sách
+                const updatedCart = prevState.listShoppingCart.filter(item => {
+                    if (item && item.product.id === id) {
+                        // Nếu sản phẩm đã bị xóa khỏi giỏ hàng, bỏ qua
+                        if (response.status === 200 && item.quantity === 1) {
+                            return false;
+                        }
+                    }
+                    return true;
+                });
 
-
+                // Cập nhật giỏ hàng với sản phẩm mới
+                return {
+                    listShoppingCart: updatedCart
+                };
+            });
+        } catch (error) {
+            console.error('Error reducing quantity:', error);
+        }
     }
-
 
     async componentDidMount() {
         try {
@@ -133,7 +152,7 @@ class Cart extends React.Component<{}, State> {
                                             </tr>
                                         ))
                                     ) : (
-                                        <div>Giỏ hàng của bạn hiện tại rỗng.</div>
+                                       <td>Giỏ hàng của bạn hiện tại rỗng.</td>
                                     )}
 
                                     <tr className="bottom_button">
