@@ -1,8 +1,8 @@
 import Header from "./component/Header";
 import Footer from "./component/Footer";
-import "../src/asset/style.scss";
 import "../src/vendors/bootstrap/bootstrap.min.css";
 import "../src/vendors/owl-carousel/owl.theme.default.min.css";
+import "../src/asset/style.scss";
 import "../src/img/home/parallax-bg.png";
 import logo from "../src/img/logo.png";
 import React, { useState } from "react";
