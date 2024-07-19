@@ -338,10 +338,12 @@ class Products extends React.Component<{}, State> {
                                                             />
                                                             <ul className="card-product__imgOverlay">
                                                                 <li>
-                                                                    <Link to={`/product/${item.id}`}>
-                                                                        <FontAwesomeIcon
-                                                                            icon={faSearch}></FontAwesomeIcon>
-                                                                    </Link>
+                                                                    <button>
+                                                                        <Link to={`/product/${item.id}`}>
+                                                                            <FontAwesomeIcon
+                                                                                icon={faSearch}></FontAwesomeIcon>
+                                                                        </Link>
+                                                                    </button>
                                                                 </li>
                                                                 <li>
                                                                     <button>
