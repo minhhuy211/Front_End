@@ -53,6 +53,7 @@ const ProductDetail: React.FC = () => {
         fetchProduct();
     }, [id]); // Đưa `id` vào dependencies của useEffect để fetch dữ liệu khi `id` thay đổi
 
+    
     function replaceNewlinesWithBr(text: string): string {
         return text.replace(/\n/g, '<br>').replace(/\t/g, '&emsp;');
     }
