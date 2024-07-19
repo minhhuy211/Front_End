@@ -39,96 +39,96 @@ const LogIn: React.FC = () => {
   };
 
   return (
-      <>
-        <section className="blog-banner-area" id="category">
-          <div className="container h-100">
-            <div className="blog-banner">
-              <div className="text-center">
-                <h1>Login / Register</h1>
-                <nav aria-label="breadcrumb" className="banner-breadcrumb">
-                  <ol className="breadcrumb">
-                    <li className="breadcrumb-item">
-                      <Link to="/">Home</Link>
-                    </li>
-                    <li className="breadcrumb-item active" aria-current="page">
-                      Login/Register
-                    </li>
-                  </ol>
-                </nav>
-              </div>
+    <>
+      <section className="blog-banner-area" id="category">
+        <div className="container h-100">
+          <div className="blog-banner">
+            <div className="text-center">
+              <h1>Đăng Nhập/ Đăng Ký</h1>
+              <nav aria-label="breadcrumb" className="banner-breadcrumb">
+                <ol className="breadcrumb">
+                  <li className="breadcrumb-item">
+                    <Link to="/">Trang Chủ</Link>
+                  </li>
+                  <li className="breadcrumb-item active" aria-current="page">
+                    Đăng Nhập
+                  </li>
+                </ol>
+              </nav>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section className="login_box_area section-margin">
-          <div className="container">
-            <div className="row">
-              <div className="col-lg-6">
-                <div className="login_box_img">
-                  <div className="hover">
-                    <h4>New to our website?</h4>
-                    <p>
-                      There are advances being made in science and technology
-                      everyday, and a good example of this is the
-                    </p>
-                    <Link to="/register" className="button button-account">
-                      Create an Account
-                    </Link>
-                  </div>
-                </div>
-              </div>
-              <div className="col-lg-6">
-                <div className="login_form_inner">
-                  <h3>Log in to enter</h3>
-                  {errorMessage && (
-                      <div className="alert alert-danger" role="alert">
-                        {errorMessage}
-                      </div>
-                  )}
-                  <form className="row login_form" onSubmit={handleLogin}>
-                    <div className="col-md-12 form-group">
-                      <input
-                          type="text"
-                          className="form-control"
-                          id="username"
-                          name="name"
-                          placeholder="Username"
-                          value={username}
-                          onChange={(e) => setUsername(e.target.value)}
-                          onFocus={(e) => (e.target.placeholder = "")}
-                          onBlur={(e) => (e.target.placeholder = "Username")}
-                      />
-                    </div>
-                    <div className="col-md-12 form-group">
-                      <input
-                          type="password"
-                          className="form-control"
-                          id="password"
-                          name="name"
-                          placeholder="Password"
-                          value={password}
-                          onChange={(e) => setPassword(e.target.value)}
-                          onFocus={(e) => (e.target.placeholder = "")}
-                          onBlur={(e) => (e.target.placeholder = "Password")}
-                      />
-                    </div>
-                    <div className="col-md-12 form-group">
-                      <button
-                          type="submit"
-                          value="submit"
-                          className="button button-login w-100"
-                      >
-                        Log In
-                      </button>
-                      <a href="#">Forgot Password?</a>
-                    </div>
-                  </form>
+      <section className="login_box_area section-margin">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-6">
+              <div className="login_box_img">
+                <div className="hover">
+                  <h4>Đây là lần đầu bạn đến trang Web?</h4>
+                  <p>
+                    Nếu chưa có tài khoản hãy tạo ngay cho mình một tài khoản.
+                    Nó sẽ hữu ích cho bạn.
+                  </p>
+                  <Link to="/register" className="button button-account">
+                    Tạo Tài Khoản
+                  </Link>
                 </div>
               </div>
             </div>
+            <div className="col-lg-6">
+              <div className="login_form_inner">
+                <h3>Đăng Nhập</h3>
+                {errorMessage && (
+                  <div className="alert alert-danger" role="alert">
+                    {errorMessage}
+                  </div>
+                )}
+                <form className="row login_form" onSubmit={handleLogin}>
+                  <div className="col-md-12 form-group">
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="username"
+                      name="name"
+                      placeholder="Tài khoản"
+                      value={username}
+                      onChange={(e) => setUsername(e.target.value)}
+                      onFocus={(e) => (e.target.placeholder = "")}
+                      onBlur={(e) => (e.target.placeholder = "Username")}
+                    />
+                  </div>
+                  <div className="col-md-12 form-group">
+                    <input
+                      type="password"
+                      className="form-control"
+                      id="password"
+                      name="name"
+                      placeholder="Mật khẩu"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      onFocus={(e) => (e.target.placeholder = "")}
+                      onBlur={(e) => (e.target.placeholder = "Password")}
+                    />
+                  </div>
+                  <div className="col-md-12 form-group">
+                    <button
+                      type="submit"
+                      value="submit"
+                      className="button button-login w-100"
+                    >
+                      Đăng Nhập
+                    </button>
+                    <a href="#">Quên mật khẩu?</a>
+                  </div>
+                </form>
+              </div>
+            </div>
           </div>
-        </section>
-      </>
+        </div>
+      </section>
+    </>
   );
 };
 
