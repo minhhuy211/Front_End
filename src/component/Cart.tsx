@@ -26,11 +26,13 @@ interface ShoppingCart {
 
 interface State {
     listShoppingCart:ShoppingCart[];
+    totalPrice:number
 }
 
 class Cart extends React.Component<{}, State> {
     state: State = {
-        listShoppingCart: []
+        listShoppingCart: [],
+        totalPrice:0
     }
 
     //xử lí tăng số lượng
@@ -89,7 +91,7 @@ class Cart extends React.Component<{}, State> {
 
 
     render() {
-        let {listShoppingCart} = this.state;
+        let {listShoppingCart,totalPrice} = this.state;
         return (
             <>
                 <section className="blog-banner-area" id="category">
@@ -129,12 +131,14 @@ class Cart extends React.Component<{}, State> {
                                     {/*begin*/}
                                     {listShoppingCart.length>0?
                                     listShoppingCart.map((item, index) => {
+                                        totalPrice+=((+item.product.price)*(item.quantity));
                                         return (<>
+
                                             <tr key={item.product.id}>
                                                 <td>
                                                     <div className="media">
                                                         <div className="d-flex">
-                                                            {/* <img src={item.product.image} alt="" /> */}
+                                                             <img src={item.product.image} alt="" />
                                                         </div>
                                                         <div className="media-body">
                                                             <p>{item.product.name}</p>
@@ -143,12 +147,14 @@ class Cart extends React.Component<{}, State> {
                                                 </td>
                                                 <td>
                                                     <h5>{item.product.price} VND</h5>
+
                                                 </td>
                                                 <td>
-                                                    <button onClick={() => this.handleAdd(item.product.id)}>+</button>
-                                                    <b>{item.quantity}</b>
                                                     <button onClick={() => this.handleReduce(item.product.id)}>-
                                                     </button>
+                                                    <b>{item.quantity}</b>
+                                                    <button onClick={() => this.handleAdd(item.product.id)}>+</button>
+
                                                 </td>
                                                 <td>
                                                     <h5>{+item.product.price * item.quantity} VND</h5>
@@ -161,7 +167,7 @@ class Cart extends React.Component<{}, State> {
                                         :
                                         <tr>
                                             <td>
-                                                giỏ hang rong
+
                                             </td>
                                         </tr>
                                     }
@@ -195,7 +201,7 @@ class Cart extends React.Component<{}, State> {
                                             <h5>Subtotal</h5>
                                         </td>
                                         <td>
-                                            <h5>$2160.00</h5>
+                                            <h5>{totalPrice}</h5>
                                         </td>
                                     </tr>
                                     <tr className="shipping_area">
