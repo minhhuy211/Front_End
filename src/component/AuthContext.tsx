@@ -1,26 +1,51 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, Component, ReactNode } from "react";
 
-interface AuthContextType {
+interface User {
     username: string;
-    setUsername: (username: string) => void;
 }
 
-const AuthContext = createContext<AuthContextType | undefined>(undefined);
+interface AuthContextType {
+    user: User | null;
+    setUser: (user: User | null) => void;
+}
 
-export const useAuth = () => {
-    const context = useContext(AuthContext);
-    if (!context) {
-        throw new Error("useAuth must be used within an AuthProvider");
+const AuthContext = createContext<AuthContextType>({
+    user: null,
+    setUser: () => {},
+});
+
+interface AuthProviderProps {
+    children: ReactNode; // Thêm thuộc tính children
+}
+
+interface AuthProviderState {
+    user: User | null;
+}
+
+export class AuthProvider extends Component<AuthProviderProps, AuthProviderState> {
+    constructor(props: AuthProviderProps) {
+        super(props);
+        this.state = {
+            user: null,
+        };
     }
-    return context;
-};
 
-export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-    const [username, setUsername] = useState<string>("");
+    setUser = (user: User | null) => {
+        this.setState({ user });
+    };
 
-    return (
-        <AuthContext.Provider value={{ username, setUsername }}>
-            {children}
-        </AuthContext.Provider>
-    );
-};
+    render() {
+        return (
+            <AuthContext.Provider
+                value={{
+                    user: this.state.user,
+                    setUser: this.setUser,
+                }}
+            >
+                {this.props.children} {/* Hiển thị children */}
+            </AuthContext.Provider>
+        );
+    }
+}
+
+export default AuthContext;
