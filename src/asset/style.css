@@ -3572,10 +3572,12 @@ a {
   align-self: center;
 }
 .cart_inner .table tbody tr td .media .d-flex {
-  padding-right: 30px;
+  padding-right: 20px;
 }
 .cart_inner .table tbody tr td .media .d-flex img {
+  border: 1px solid #eeeeee;
   border-radius: 3px;
+  width: 120px;
 }
 @media (max-width: 600px) {
   .cart_inner .table tbody tr td .media .d-flex img {
