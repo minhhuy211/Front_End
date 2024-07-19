@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import {AuthProvider} from "./component/AuthContext";
+import { useAuth } from "./AuthContext";
 
 const LogIn: React.FC = () => {
   const navigate = useNavigate();
@@ -23,6 +23,7 @@ const LogIn: React.FC = () => {
       const data = await response.json();
       if (response.ok) {
         console.log("Login successful", data);
+        setUsername(username);
         // Lưu token và chuyển hướng hoặc thực hiện hành động khác
         navigate("/", { state: { username } }); // Chuyển hướng sang trang chủ
       } else {
