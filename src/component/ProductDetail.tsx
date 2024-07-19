@@ -32,7 +32,12 @@ const ProductDetail: React.FC = () => {
     const [product, setProduct] = useState<Product | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
-
+//sự kiện thêm giỏ hàng
+    let handleAddShoppingCart=async (id:number)=>{
+        await axios.post("http://localhost:4000/shoppingcart/"+id);
+        // let response = await axios.get("http://localhost:4000/shoppingcarts");
+        // console.log(response.data)
+    }
     useEffect(() => {
         const fetchProduct = async () => {
             try {
@@ -65,17 +70,17 @@ const ProductDetail: React.FC = () => {
                 <div className="container h-100">
                     <div className="blog-banner">
                         <div className="text-center">
-                            <h1>Product Detail</h1>
+                            <h1>Chi tiết sản phẩm</h1>
                             <nav aria-label="breadcrumb" className="banner-breadcrumb">
                                 <ol className="breadcrumb">
                                     <li className="breadcrumb-item">
-                                        <a href="#">Home</a>
+                                        <a href="#">Trang Chủ</a>
                                     </li>
                                     <li className="breadcrumb-item" aria-current="page">
-                                        <a href="#">Menu</a>
+                                        <a href="#">Code Tham Khảo</a>
                                     </li>
                                     <li className="breadcrumb-item active" aria-current="page">
-                                        Product Detail
+                                        Chi tiết sản phẩm
                                     </li>
                                 </ol>
                             </nav>
@@ -118,7 +123,7 @@ const ProductDetail: React.FC = () => {
                                         if (!isNaN(sst) && sst > 0) result.value = (sst - 1).toString();
                                     }} className="reduced items-count" type="button"><i
                                         className="ti-angle-right"></i></button>
-                                    <a className="button primary-btn" href="#">Add to Cart</a>
+                                    <a className="button primary-btn" href="#" >Add to Cart</a>
                                 </div>
                             </div>
                         </div>

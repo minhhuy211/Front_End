@@ -1,6 +1,5 @@
 import React, {ChangeEvent} from "react";
 import product2 from "../img/product/product2.png"
-import {Link} from 'react-router-dom';
 import axios from "axios";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
@@ -22,7 +21,8 @@ interface Product {
     programmingLanguage: string;
     version: string;
     requirements: string;
-    like: number
+    like:number;
+    comments:string;
 }
 
 interface State {
@@ -96,16 +96,39 @@ class Products extends React.Component<{}, State> {
 
     }
     //select
-    handleSelectPerPage = (e: ChangeEvent<HTMLSelectElement>) => {
+    handleSelectPerPage=(e:ChangeEvent<HTMLSelectElement>)=>{
         this.setState(prevState => ({
-            perPage: +e.target.value
+            perPage:+e.target.value
         }))
     }
-    //sự kiện yêu thích (like) sản phẩm
-    handleLikeClick = (id: number) => {
-        let res = axios.put("http://localhost:4000/products/like/" + id);
-        console.log(res, "likeeeeeeeeeeeeeeee")
+    //sự kiện thêm giỏ hàng
+    handleAddShoppingCart=async (id:number)=>{
+        await axios.post("http://localhost:4000/shoppingcart/"+id);
+        // let response = await axios.get("http://localhost:4000/shoppingcarts");
+        // console.log(response.data)
     }
+
+    //sự kiện yêu thích (like) sản phẩm
+    handleLikeClick = async (id: number) => {
+        try {
+            // Gửi yêu cầu PUT để cập nhật số lượng like của sản phẩm với id
+            await axios.put(`http://localhost:4000/products/like/${id}`);
+
+            // Cập nhật lại state của React sau khi cập nhật thành công
+            this.setState(prevState => ({
+                listProducts: prevState.listProducts.map(product => {
+                    if (product.id === id) {
+                        // Cập nhật lại số lượng like của sản phẩm có id tương ứng
+                        return { ...product, like: product.like + 1 };
+                    }
+                    return product; // Trả về sản phẩm không thay đổi nếu không phải sản phẩm cần cập nhật
+                })
+            }));
+
+        } catch (error) {
+            console.error('Error updating product with like:', error);
+        }
+    };
     //loadMenu trang
     loadMenu = () => {
         this.setState(prevState => ({
@@ -143,7 +166,7 @@ class Products extends React.Component<{}, State> {
 
     componentDidUpdate(prevProps: Readonly<{}>, prevState: Readonly<State>, snapshot?: any) {
         if ((prevState.txt !== this.state.txt) || (prevState.categoryCurrent !== this.state.categoryCurrent) || (prevState.programmingLanguageCurrent !== this.state.programmingLanguageCurrent)
-            || (prevState.pageCurrent !== this.state.pageCurrent) || (prevState.perPage !== this.state.perPage)
+            || (prevState.pageCurrent !== this.state.pageCurrent)||(prevState.perPage!==this.state.perPage)||(prevState.listProducts!==this.state.listProducts)
         ) {
             this.loadMenu();
         }
@@ -346,26 +369,24 @@ class Products extends React.Component<{}, State> {
                                                                     </button>
                                                                 </li>
                                                                 <li>
-                                                                    <button>
+                                                                    <button onClick={() => this.handleAddShoppingCart(item.id)}>
                                                                         <FontAwesomeIcon
                                                                             icon={faShoppingCart}></FontAwesomeIcon>
                                                                     </button>
                                                                 </li>
                                                                 <li>
-                                                                    <button
-                                                                        onClick={() => this.handleLikeClick(item.id)}>
+                                                                    <button onClick={()=>this.handleLikeClick(item.id)}>
                                                                         <FontAwesomeIcon
                                                                             icon={faHeart}></FontAwesomeIcon>
                                                                     </button>
+                                                                    {item.like}
                                                                 </li>
                                                             </ul>
                                                         </div>
                                                         <div className="card-body">
                                                             <p>{item.programmingLanguage}</p>
                                                             <h4 className="card-product__title">
-                                                                <Link to={`/product/${item.id}`}>
-                                                                    {item.name}
-                                                                </Link>
+                                                                <a href="#">{item.name}</a>
                                                             </h4>
                                                             <p className="card-product__price">{item.price} VND</p>
                                                         </div>
@@ -382,7 +403,7 @@ class Products extends React.Component<{}, State> {
                             </div>
 
                         </div>
-                        <div>
+                        <div >
                             {Array.from({length: numPage}, (_, index) => (
                                 <button
                                     key={index + 1}
@@ -391,7 +412,6 @@ class Products extends React.Component<{}, State> {
                                 >
                                     {index + 1}
                                 </button>
-
                             ))}
                         </div>
                     </div>
