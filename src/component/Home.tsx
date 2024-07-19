@@ -1,6 +1,7 @@
 import React from "react";
 import banner from "../assets/banner.jpg";
 import "../styles/Home.scss";
+import {Link} from 'react-router-dom';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
     faCheckCircle,
@@ -44,8 +45,8 @@ class Home extends React.Component <{}, State> {
 
     }
     //xư lí hanh đông nhấn tim
-    handleLikeClick = (id: number) => {
-        let res = axios.put("http://localhost:4000/products/like/" + id);
+    handleLikeClick =async (id: number) => {
+        let res =await axios.put("http://localhost:4000/products/like/" + id);
         this.setState(prevState => ({
             listProducts: prevState.listProducts.map(p => {
                 if (p.id === id) {
@@ -59,8 +60,7 @@ class Home extends React.Component <{}, State> {
     //sự kiện thêm giỏ hàng
     handleAddShoppingCart=async (id:number)=>{
         await axios.post("http://localhost:4000/shoppingcart/"+id);
-        // let response = await axios.get("http://localhost:4000/shoppingcarts");
-        // console.log(response.data)
+
     }
 
     async componentDidMount() {
@@ -184,11 +184,10 @@ class Home extends React.Component <{}, State> {
                                                     <img className="card-img" src={item.image} alt=""></img>
                                                     <ul className="card-product__imgOverlay">
                                                         <li>
-                                                            <button>
-                                                                {/*<i className="ti-search"></i>*/}
+                                                            <Link to={`/product/${item.id}`}>
                                                                 <FontAwesomeIcon
                                                                     icon={faSearch}></FontAwesomeIcon>
-                                                            </button>
+                                                            </Link>
                                                         </li>
                                                         <li>
                                                             <button onClick={() => this.handleAddShoppingCart(item.id)}>
@@ -208,7 +207,9 @@ class Home extends React.Component <{}, State> {
                                                 <div className="card-body">
                                                     <p>{item.programmingLanguage}</p>
                                                     <h4 className="card-product__title">
-                                                        <a href="#">{item.name}</a>
+                                                        <Link to={`/product/${item.id}`}>
+                                                            {item.name}
+                                                        </Link>
                                                     </h4>
                                                     <p className="card-product__price">{item.price} VND</p>
                                                 </div>
@@ -236,10 +237,10 @@ class Home extends React.Component <{}, State> {
                                                     <img className="card-img" src={item.image} alt=""></img>
                                                     <ul className="card-product__imgOverlay">
                                                         <li>
-                                                            <button>
+                                                            <Link to={`/product/${item.id}`}>
                                                                 <FontAwesomeIcon
                                                                     icon={faSearch}></FontAwesomeIcon>
-                                                            </button>
+                                                            </Link>
                                                         </li>
                                                         <li>
                                                             <button onClick={() => this.handleAddShoppingCart(item.id)}>
@@ -259,7 +260,9 @@ class Home extends React.Component <{}, State> {
                                                 <div className="card-body">
                                                     <p>{item.programmingLanguage}</p>
                                                     <h4 className="card-product__title">
-                                                        <a href="#">{item.name}</a>
+                                                        <Link to={`/product/${item.id}`}>
+                                                            {item.name}
+                                                        </Link>
                                                     </h4>
                                                     <p className="card-product__price">{item.price} VND</p>
                                                 </div>
@@ -290,11 +293,10 @@ class Home extends React.Component <{}, State> {
                                                     <img className="card-img" src={item.image} alt=""></img>
                                                     <ul className="card-product__imgOverlay">
                                                         <li>
-                                                            <button>
-                                                                {/*<i className="ti-search"></i>*/}
+                                                            <Link to={`/product/${item.id}`}>
                                                                 <FontAwesomeIcon
                                                                     icon={faSearch}></FontAwesomeIcon>
-                                                            </button>
+                                                            </Link>
                                                         </li>
                                                         <li>
                                                             <button onClick={() => this.handleAddShoppingCart(item.id)}>
@@ -314,7 +316,9 @@ class Home extends React.Component <{}, State> {
                                                 <div className="card-body">
                                                     <p>{item.programmingLanguage}</p>
                                                     <h4 className="card-product__title">
-                                                        <a href="#">{item.name}</a>
+                                                        <Link to={`/product/${item.id}`}>
+                                                            {item.name}
+                                                        </Link>
                                                     </h4>
                                                     <p className="card-product__price">{item.price} VND</p>
                                                 </div>
@@ -344,11 +348,10 @@ class Home extends React.Component <{}, State> {
                                                     <img className="card-img" src={item.image} alt=""></img>
                                                     <ul className="card-product__imgOverlay">
                                                         <li>
-                                                            <button>
-                                                                {/*<i className="ti-search"></i>*/}
+                                                            <Link to={`/product/${item.id}`}>
                                                                 <FontAwesomeIcon
                                                                     icon={faSearch}></FontAwesomeIcon>
-                                                            </button>
+                                                            </Link>
                                                         </li>
                                                         <li>
                                                             <button onClick={() => this.handleAddShoppingCart(item.id)}>
@@ -368,7 +371,9 @@ class Home extends React.Component <{}, State> {
                                                 <div className="card-body">
                                                     <p>{item.programmingLanguage}</p>
                                                     <h4 className="card-product__title">
-                                                        <a href="#">{item.name}</a>
+                                                        <Link to={`/product/${item.id}`}>
+                                                            {item.name}
+                                                        </Link>
                                                     </h4>
                                                     <p className="card-product__price">{item.price} VND</p>
                                                 </div>

@@ -21,7 +21,7 @@ class Footer extends React.Component {
                 <img src={logo} alt="" className="logo" />
               </a>
               <p>
-                <span>Sharecode.vn</span> là một cộng đồng "download và chia sẻ
+                <span>ICanCode</span> là một cộng đồng "download và chia sẻ
                 source code" cho tất cả những ai yêu thích, quan tâm đến lĩnh
                 vực công nghệ thông tin và muốn tìm hiểu kỹ năng lập trình, ở
                 đây bạn có thể tìm kiếm và download miễn phí hoặc có phí các
@@ -75,7 +75,7 @@ class Footer extends React.Component {
               </p>
               <p>
                 <FontAwesomeIcon icon={faPhone}></FontAwesomeIcon>
-                &nbsp; +123456 7890
+                &nbsp; +123 456 7890
               </p>
               <p>
                 <FontAwesomeIcon icon={faEnvelope}></FontAwesomeIcon>
